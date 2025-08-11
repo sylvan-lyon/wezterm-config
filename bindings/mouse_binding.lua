@@ -68,11 +68,11 @@ M.apply_to = function(config)
         -- 鼠标滚动事件
         {
             event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-            action = act.ScrollByLine(-1),
+            action = act.ScrollByLine(-5),
         },
         {
             event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-            action = act.ScrollByLine(1),
+            action = act.ScrollByLine(5),
         },
 
         -- 鼠标滚动调整字体大小
