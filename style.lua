@@ -9,17 +9,32 @@ custom_catppuccin.brights = catppuccin:get_bright_table()
 
 M.apply_to = function(config)
     ------------------ 设置字体 ---------------------
-    config.font = wezterm.font("Maple Mono NF CN")
-    config.font_size = 10
+    local regular_sized_font = {
+        { family = "Maple Mono NF CN", weight = "Regular" },
+        { family = "JetBrainsMono Nerd Font", weight = "Regular" },
+        { family = "consolas", weight = "Regular" },
+    }
 
-    -------------------- 动画帧率 --------------------
-    config.animation_fps = 165
-    config.max_fps = 165
+    local bold_sized_font = {
+        { family = "Maple Mono NF CN", weight = "Bold" },
+        { family = "JetBrainsMono Nerd Font", weight = "Bold" },
+        { family = "consolas", weight = "Bold" },
+    }
+
+    config.font = wezterm.font_with_fallback(regular_sized_font)
+    config.font_size = 10
+    config.font_rules = {
+        {
+            intensity = "Bold",
+            font = wezterm.font_with_fallback(bold_sized_font)
+        }
+    }
 
     -------------------- 颜色配置 --------------------
     config.color_schemes = {
         ["custom_catppuccin"] = custom_catppuccin,
     }
+    -- config.color_scheme = 'Catppuccin Mocha'
     config.color_scheme = 'custom_catppuccin'
 
     -------------------- 窗口样式 --------------------
